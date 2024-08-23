@@ -74,7 +74,7 @@ export default function Crud() {
           className="border px-4 py-2 rounded mb-4  w-full"
         />
         <div className="flex justify-center">
-        {editingItem ? (
+        {/* {editingItem ? (
           <Button type="update" onClick={() => {}}>
             Update Item
           </Button>
@@ -82,12 +82,15 @@ export default function Crud() {
           <Button type="create" onClick={() => {}}>
             Create New Item
           </Button>
-        )}
+        )} */}
+
+        <Button type={editingItem ? "update" : "create"} onClick={() => {}}>
+          {editingItem ? "Update Item" : "Create New Item"}
+        </Button>
+
         </div>
       </form>
    
-       
-
       <div>
         {items.map((item) => (
           <div key={item.id} className="flex justify-between items-center p-4 border-b">
