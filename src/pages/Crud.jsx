@@ -14,15 +14,18 @@ export default function Crud() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('crudItems')) || crudItem);
   const [editingItem, setEditingItem] = useState(null)
   const [formData, setFormData] = useState({name: '', description: ''});
-  const [isMessage, setIsMessage] = useState(false);
 
   
   const saveToLocalStorage = (items) => {
     localStorage.setItem('crudItems', JSON.stringify(items))
   }
 
-  const handleChange = (e) => {
+  useEffect(() => {
+      saveToLocalStorage(items);
+  }, [items])
 
+  
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({...formData, [name]: value});
   }
@@ -52,7 +55,6 @@ export default function Crud() {
    setEditingItem(null);
    setFormData({ name: '', description: ''});
    saveToLocalStorage(updatedItems)
-   setIsMessage(true)
    
   }
 
@@ -77,6 +79,7 @@ export default function Crud() {
       .filter((item) => item.id !== id)
       .map((item, index) => ({ ...item, id: index + 1 }));
     setItems(updatedItems);
+    // saveToLocalStorage(updatedItems);
     }
   };
   
@@ -93,52 +96,22 @@ export default function Crud() {
           required
           className="border px-4 py-2 rounded mb-2 w-full" 
           />
-
-        <textarea
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          placeholder="Item description"
-          required
-          className="border px-4 py-2 rounded mb-4  w-full"
-        />
+       <input
+        type="text"
+        name="description"
+        value={formData.description}
+        onChange={handleChange}
+        placeholder="Item Description"
+        required
+        className="border px-4 py-2 rounded w-full"/>   
+        
         <div className="flex justify-center">
-        {/* {editingItem ? (
-          <Button type="update" onClick={() => {}}>
-            Update Item
-          </Button>
-        ) : (
-          <Button type="create" onClick={() => {}}>
-            Create New Item
-          </Button>
-        )} */}
-   
         <Button type={editingItem ? "update" : "create"} onClick={() => {}}>
           {editingItem ? "Update Item" : "Create New Item"}
         </Button> 
-        {isMessage && <div>Item Updated</div>}
         </div>
       </form>
-   
-      {/* <div>
-        {items.map((item) => (
-          <div key={item.id} className="flex justify-between items-center p-4 border-b">
-            <div>
-              <p className="text-gray-500">{item.id}</p>
-              <h2 className="text-xl font-semibold">{item.name}</h2>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
-            <div className="space-x-2">
-              <Button type="update" onClick={() => handleEdit(item)}>
-                Edit
-              </Button>
-              <Button type="delete" onClick={()=> handleDelete(item.id)}>
-                Delete
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div> */}
+
       <table className="mt-10">
         <thead>
           <tr>
@@ -162,7 +135,6 @@ export default function Crud() {
                   Delete
                 </Button>
               </td>
-
             </tr>
           ))}
         </tbody>
