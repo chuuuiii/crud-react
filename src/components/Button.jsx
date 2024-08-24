@@ -1,6 +1,6 @@
 
 const Button = ({  type, onClick, children }) => {
-  const baseStyles = "px-4 py-2 font-semibold text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const baseStyles = "px-4 py-2 font-semibold text-white rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 mt-2";
 
   const typeStyles = {
     create: "bg-green-500 hover:bg-green-600 focus:ring-green-300",
