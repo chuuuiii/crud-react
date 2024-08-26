@@ -14,6 +14,7 @@ export default function Crud() {
   const [items, setItems] = useState(JSON.parse(localStorage.getItem('crudItems')) || crudItem);
   const [editingItem, setEditingItem] = useState(null)
   const [formData, setFormData] = useState({name: '', description: ''});
+  const [loading, setLoading] = useState(true)
 
   
   const saveToLocalStorage = (items) => {
@@ -21,7 +22,10 @@ export default function Crud() {
   }
 
   useEffect(() => {
+    setTimeout(() => {
       saveToLocalStorage(items);
+      setLoading(false)
+    }, 1000)
   }, [items])
 
   
@@ -114,8 +118,11 @@ export default function Crud() {
         </Button> 
         </div>
       </form>
-
-      <table className="mt-10">
+      
+      {loading ? (
+        <div>Loading...</div> 
+      ) : (
+        <table className="mt-10">
         <thead className="bg-gray-200">
           <tr>
             <th>ID</th>
@@ -142,6 +149,7 @@ export default function Crud() {
           ))}
         </tbody>
       </table>
+      )}
     </div>
   );
 }
