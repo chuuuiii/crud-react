@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import Button from "../components/Button";
 
 
-const crudItem = [
-  { id: 1, name: 'Item 1', description: 'Description for item 1' },  
-  { id: 2, name: 'Item 2', description: 'Description for item 2' },
-  { id: 3, name: 'Item 3', description: 'Description for item 3' },
+// const crudItem = [
+//   { id: 1, name: 'Item 1', description: 'Description for item 1' },  
+//   { id: 2, name: 'Item 2', description: 'Description for item 2' },
+//   { id: 3, name: 'Item 3', description: 'Description for item 3' },
   
-]
+// ]
 
 export default function Crud() {
   // const [items, setItems] = useState(crudItem);
@@ -82,6 +82,7 @@ export default function Crud() {
     // saveToLocalStorage(updatedItems);
     }
   };
+
   
   return (
     <div className="p-6 bg-white rounded-lg shadow-md min-h-screen flex flex-col flex-grow">
@@ -94,6 +95,7 @@ export default function Crud() {
           onChange={handleChange}
           placeholder="Item name"
           required
+          autoComplete="off"
           className="border px-4 py-2 rounded mb-2 w-full" 
           />
        <input
@@ -103,9 +105,10 @@ export default function Crud() {
         onChange={handleChange}
         placeholder="Item Description"
         required
+        autoComplete="off"
         className="border px-4 py-2 rounded w-full"/>   
-        
-        <div className="flex justify-center">
+
+        <div className="flex justify-center mt-5">
         <Button type={editingItem ? "update" : "create"} onClick={() => {}}>
           {editingItem ? "Update Item" : "Create New Item"}
         </Button> 
@@ -113,7 +116,7 @@ export default function Crud() {
       </form>
 
       <table className="mt-10">
-        <thead>
+        <thead className="bg-gray-200">
           <tr>
             <th>ID</th>
             <th>Item Name</th>
