@@ -5,7 +5,7 @@ import Footer from './Footer'
 export default function Header() {
   return (
     <div className="bg-white min-h-screen">
-      <header className='bg-red-500 p-6'>
+      <header className='bg-red-500 p-6 sticky top-0 z-50 shadow-lg'>
         <nav className='flex justify-end items-center text-2xl'>
           <div className='space-x-2 '>
             <NavLink to="/" className="text-white hover:text-gray-300">Home</NavLink>
