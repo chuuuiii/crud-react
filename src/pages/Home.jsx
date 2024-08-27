@@ -6,7 +6,8 @@ export default function Home({ handleCreate }) {
 
   return (
     <div className='flex justify-center items-center min-h-screen'>
-      <div className='text-center'>
+      <div className='text-center text-3xl'>
+        <h1 className="text-gray-900 font-semibold mb-10">Welcome to my CRUD Application</h1>
         <p className='text-gray-900 text-2xl'>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Non quis nobis aut iste, tempore animi nam fuga repudiandae praesentium quidem!
         </p>
